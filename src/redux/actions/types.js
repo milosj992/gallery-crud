@@ -9,3 +9,5 @@ export const FETCH_GALLERY = 'FETCH_GALLERY';
 export const CREATE_GALLERY = 'CREATE_GALLERY';
 export const EDIT_GALLERY = 'EDIT_GALLERY';
 export const DELETE_GALLERY = 'DELETE_GALLERY';
+
+export const LOGIN="LOGIN";
