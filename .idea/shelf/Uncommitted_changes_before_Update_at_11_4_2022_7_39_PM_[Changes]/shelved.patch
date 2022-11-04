@@ -1,0 +1,124 @@
+Index: src/components/App.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {BrowserRouter, Route, Routes} from \"react-router-dom\";\r\n\r\nimport Home from \"./mainHeaderPages/Home\"\r\nimport GalleryTable from \"./mainHeaderPages/GalleryTable\";\r\nimport LoremTable from \"./mainHeaderPages/LoremTable\";\r\nimport ToDo from \"./mainHeaderPages/ToDo\";\r\nimport NavBar from \"./NavBar\";\r\n\r\nimport { configureFakeBackend } from './configureFakeBackend';\r\nconfigureFakeBackend();\r\n\r\nconst App = () => {\r\n    return (\r\n        <div>\r\n\r\n            <BrowserRouter>\r\n                <NavBar/>\r\n                <div className=\"ui container\">\r\n\r\n                    <Routes>\r\n                        <Route path=\"/\" exact element={<Home/>}/>\r\n                        <Route path=\"/lorem-table\" exact element={<GalleryTable/>}/>\r\n                        <Route path=\"/gallery-table\" exact element={<LoremTable/>}/>\r\n                        <Route path=\"/todo\" exact element={<ToDo/>}/>\r\n                    </Routes>\r\n                </div>\r\n            </BrowserRouter>\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default App;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/App.js b/src/components/App.js
+--- a/src/components/App.js	(revision d076d83b4896221ff8b5a95b99339ab2280aeeaf)
++++ b/src/components/App.js	(date 1667428815827)
+@@ -7,6 +7,7 @@
+ import NavBar from "./NavBar";
+ 
+ import { configureFakeBackend } from './configureFakeBackend';
++import GoogleAuth from "./GoogleAuth";
+ configureFakeBackend();
+ 
+ const App = () => {
+@@ -22,6 +23,7 @@
+                         <Route path="/lorem-table" exact element={<GalleryTable/>}/>
+                         <Route path="/gallery-table" exact element={<LoremTable/>}/>
+                         <Route path="/todo" exact element={<ToDo/>}/>
++                        <Route path="/auth" exact element={<GoogleAuth/>}/>
+                     </Routes>
+                 </div>
+             </BrowserRouter>
+Index: src/components/GoogleAuth.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/GoogleAuth.js b/src/components/GoogleAuth.js
+new file mode 100644
+--- /dev/null	(date 1667431228818)
++++ b/src/components/GoogleAuth.js	(date 1667431228818)
+@@ -0,0 +1,23 @@
++import {useEffect} from "react";
++
++const GoogleAuth=()=>{
++    useEffect(()=>{
++        window.gapi.load('client:auth2', () => {
++            window.gapi.client
++                .init({
++                    clientId:
++                        '189852075081-s62p4dcg6jl2q7adl7onmrt1ar97803p.apps.googleusercontent.com',
++                    scope: 'email'
++                })
++                .then(() => {
++                     window.gapi.auth2.getAuthInstance();
++
++
++                });
++        });
++    },[])
++    return(
++        <div></div>
++    )
++}
++export default GoogleAuth;
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a94bd6b7-ae06-4460-81d3-a649799f2a07\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/NavBar.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/configureFakeBackend.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/mainHeaderPages/GalleryTable.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/mainHeaderPages/LoremTable.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/components/mainHeaderPages/ToDo.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/redux/actions/auth.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/redux/reducers/authReducer.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/package-lock.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package-lock.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/App.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/rents/Home.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/mainHeaderPages/Home.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/redux/actions/types.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/redux/actions/types.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/redux/reducers/index.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/redux/reducers/index.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/utils/data.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/utils/data.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2GqOuyChG1xZqiAEosqyEoR3Ry6\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\" myUseAcceleration=\"nothing\">\r\n    <configuration useDefault=\"false\">C:\\Users\\DABIC\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a94bd6b7-ae06-4460-81d3-a649799f2a07\" name=\"Changes\" comment=\"\" />\r\n      <created>1667112875655</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1667112875655</updated>\r\n      <workItem from=\"1667112878726\" duration=\"315000\" />\r\n      <workItem from=\"1667252966077\" duration=\"8051000\" />\r\n      <workItem from=\"1667377732874\" duration=\"2359000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"masterDetails\">\r\n    <states>\r\n      <state key=\"ScopeChooserConfigurable.UI\">\r\n        <settings>\r\n          <splitter-proportions>\r\n            <option name=\"proportions\">\r\n              <list>\r\n                <option value=\"0.2\" />\r\n              </list>\r\n            </option>\r\n          </splitter-proportions>\r\n        </settings>\r\n      </state>\r\n    </states>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d076d83b4896221ff8b5a95b99339ab2280aeeaf)
++++ b/.idea/workspace.xml	(date 1667587175709)
+@@ -1,22 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="a94bd6b7-ae06-4460-81d3-a649799f2a07" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/components/NavBar.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/components/configureFakeBackend.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/components/mainHeaderPages/GalleryTable.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/components/mainHeaderPages/LoremTable.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/components/mainHeaderPages/ToDo.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/redux/actions/auth.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/redux/reducers/authReducer.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="a94bd6b7-ae06-4460-81d3-a649799f2a07" name="Changes" comment="backend update">
++      <change afterPath="$PROJECT_DIR$/src/components/GoogleAuth.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/rents/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainHeaderPages/Home.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/redux/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/types.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/index.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/utils/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/data.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -81,8 +69,16 @@
+       <updated>1667112875655</updated>
+       <workItem from="1667112878726" duration="315000" />
+       <workItem from="1667252966077" duration="8051000" />
+-      <workItem from="1667377732874" duration="2359000" />
++      <workItem from="1667377732874" duration="8970000" />
++    </task>
++    <task id="LOCAL-00001" summary="backend update">
++      <created>1667384823111</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1667384823111</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -98,6 +94,10 @@
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="backend update" />
++    <option name="LAST_COMMIT_MESSAGE" value="backend update" />
+   </component>
+   <component name="masterDetails">
+     <states>
