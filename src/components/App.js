@@ -7,7 +7,8 @@ import ToDo from "./mainHeaderPages/ToDo";
 import NavBar from "./NavBar";
 
 import { configureFakeBackend } from './configureFakeBackend';
-configureFakeBackend();
+import GoogleAuth from "./GoogleAuth";
+
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
 
                     <Routes>
                         <Route path="/" exact element={<Home/>}/>
+                        <Route path="/auth" exact element={<GoogleAuth/>}/>
                         <Route path="/lorem-table" exact element={<GalleryTable/>}/>
                         <Route path="/gallery-table" exact element={<LoremTable/>}/>
                         <Route path="/todo" exact element={<ToDo/>}/>
