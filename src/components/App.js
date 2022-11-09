@@ -16,10 +16,10 @@ const App = () => {
 
             <BrowserRouter>
                 <NavBar/>
+                <GoogleAuth/>
                 <div className="ui container">
-
                     <Routes>
-                        <Route path="/" exact element={<Home/>}/>
+                        <Route path="/home" exact element={<Home/>}/>
                         <Route path="/auth" exact element={<GoogleAuth/>}/>
                         <Route path="/lorem-table" exact element={<GalleryTable/>}/>
                         <Route path="/gallery-table" exact element={<LoremTable/>}/>
